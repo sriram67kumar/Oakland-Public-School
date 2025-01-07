@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Oakland Public School</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(120deg, #84fab0, #8fd3f4);
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid #d7e7ef;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(90deg, #ffb347, #ffcc33); /* Orange-to-Yellow Gradient */
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .home-button:hover {
+            background: linear-gradient(90deg, #ffcc33, #ffb347); /* Reverse Gradient on Hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+        .home-button:active {
+            transform: scale(1.05);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+        section {
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .intro h2 {
+            font-size: 2rem;
+            color: #444;
+        }
+        .intro p {
+            font-size: 1rem;
+            color: #666;
+            margin: 5px 0 20px 0;
+        }
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .filters button {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border: 2px solid #84fab0;
+            border-radius: 20px;
+            font-size: 1rem;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .filters button:hover {
+            background: #84fab0;
+            color: #fff;
+            transform: scale(1.05);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            background-color: #e3f2fd; /* Subtle pastel blue */
+        }
+        footer {
+            background: linear-gradient(120deg, #84fab0, #8fd3f4);
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+            border-top: 5px solid #d7e7ef;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="home-button">🏠 Home</a>
+    <h1>School Gallery</h1>
+    <p>Celebrating Moments of Learning and Fun</p>
+</header>
+
+<section>
+    <div class="intro">
+        <h2>Our Beautiful School Memories</h2>
+        <p>Browse through our vibrant gallery to relive some of the most exciting and cherished moments.</p>
+    </div>
+
+    <div class="filters">
+        <button onclick="filterGallery('all')">All</button>
+        <button onclick="filterGallery('annual')">Annual Day</button>
+        <button onclick="filterGallery('awards')">Awards</button>
+        <button onclick="filterGallery('sports')">Sports Day</button>
+        <button onclick="filterGallery('School')">School</button>
+    </div>
+
+    <div class="gallery" id="gallery">
+        <img src="Images\Gallery\Annual (4).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Sports (6).JPG" alt="Sports Event" data-category="sports">
+<img src="Images\Gallery\Annual (13).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\awards\awards (11).JPG" alt="Awards" data-category="awards">
+<img src="Images\Gallery\Screenshot 2024-03-15 180259.png" alt="Sports Event" data-category="sports">
+<img src="Images\alpha.png" alt="School" data-category="School">
+<img src="Images\awards\awards (22).JPG" alt="Awards" data-category="awards">
+<img src="Images\Gallery\Annual.JPG" alt="Annual Day" data-category="annual">
+<img src="Images\ground.png" alt="School" data-category="School">
+<img src="Images\Gallery\Sports (4).JPG" alt="Sports Event" data-category="sports">
+<img src="Images\Gallery\Annual (23).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Sports (1).JPG" alt="Sports Event" data-category="sports">
+<img src="Images\Gallery\Annual (25).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\awards\awards (15).JPG" alt="Awards" data-category="awards">
+<img src="Images\Gallery\Annual (14).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Annual (24).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Screenshot 2024-03-15 180225.png" alt="Sports Event" data-category="sports">
+<img src="Images\Gallery\Annual (7).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Sports (7).JPG" alt="Sports Event" data-category="sports">
+<img src="Images\awards\awards (24).JPG" alt="Awards" data-category="awards">
+<img src="Images\Gallery\Screenshot 2024-03-15 180404.png" alt="Sports Event" data-category="sports">
+<img src="Images\Gallery\Annual (17).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Annual (21).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Annual (26).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Sports (3).JPG" alt="Sports Event" data-category="sports">
+<img src="Images\awards\awards (13).JPG" alt="Awards" data-category="awards">
+<img src="Images\omega.png" alt="School" data-category="School">
+<img src="Images\awards\awards (3).JPG" alt="Awards" data-category="awards">
+<img src="Images\Gallery\Annual (6).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Sports (5).JPG" alt="Sports Event" data-category="sports">
+<img src="Images\awards\awards (25).JPG" alt="Awards" data-category="awards">
+<img src="Images\Gallery\Sports (2).JPG" alt="Sports Event" data-category="sports">
+<img src="Images\Gallery\Annual (10).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Screenshot 2024-03-15 180326.png" alt="Sports Event" data-category="sports">
+<img src="Images\awards\awards (27).JPG" alt="Awards" data-category="awards">
+<img src="Images\fullalpha.png" alt="School" data-category="School">
+<img src="Images\awards\awards (21).JPG" alt="Awards" data-category="awards">
+<img src="Images\awards\awards (9).JPG" alt="Awards" data-category="awards">
+<img src="Images\Gallery\Annual (8).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\awards\awards (7).JPG" alt="Awards" data-category="awards">
+<img src="Images\Gallery\Annual (2).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Annual (11).JPG" alt="Annual Day" data-category="annual">
+<img src="Images\Gallery\Annual (12).JPG" alt="Annual Day" data-category="annual">
+
+
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Oakland Public School. All Rights Reserved.</p>
+</footer>
+
+<script>
+    function filterGallery(category) {
+        const images = document.querySelectorAll('.gallery img');
+        images.forEach(image => {
+            if (category === 'all' || image.dataset.category === category) {
+                image.style.display = 'block';
+            } else {
+                image.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

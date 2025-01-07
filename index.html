@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oakland Public School</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Light background color */
+            color: #000; /* Black text color */
+        }
+        header {
+            background: linear-gradient(90deg, #ff9a9e, #89f7fe); /* Pink to light blue gradient */
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header img {
+            width: 650px; /* Enlarge logo to 280px */
+            height: 100px;
+            border-radius: 15px; /* Rounded corners for the logo */
+        }
+        header p {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 10px;
+        }
+        /* Scrolling images container */
+        .scrolling-images-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scrolling-images {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            animation: scrollImages 40s linear infinite; /* Slow scrolling animation */
+        }
+
+        .scrolling-images img {
+            height: 250px; /* Adjust size */
+            width: 350px; /* Fixed width */
+            border-radius: 15px; /* Rounded corners for the images */
+            transition: transform 0.3s ease; /* Smooth transform for hover */
+        }
+
+        .scrolling-images img:hover {
+            transform: scale(1.1); /* Slightly increase size on hover */
+        }
+
+        /* Left and right arrows */
+        .arrow-left, .arrow-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+
+        /* Keyframes for scrolling the images from right to left */
+        @keyframes scrollImages {
+            0% {
+                transform: translateX(0); /* Start from the right side */
+            }
+            100% {
+                transform: translateX(-100%); /* Scroll to the left side */
+            }
+        }
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1; /* Fully visible */
+            }
+            50% {
+                opacity: 0.5; /* Partially transparent */
+            }
+        }
+
+        .blinking {
+            animation: blink 1s infinite; /* Blinking effect */
+        }
+
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+        .feature-card {
+            background: linear-gradient(120deg, #ff9a9e, #89f7fe); /* Pink to light blue gradient */
+            color: #000; /* Black text color */
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .feature-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .feature-card h2 {
+            font-size: 1.8rem;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        .feature-card p {
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+        .feature-card img {
+            width: 100px;
+            height: auto;
+            margin: 0 auto 15px;
+        }
+        footer {
+            background: linear-gradient(90deg, #ff9a9e, #89f7fe); /* Pink to light blue gradient */
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: -60px;
+            transition: bottom 0.3s ease;
+            font-size: 0.9rem;
+        }
+        footer.scrolled-to-bottom {
+            bottom: 0;
+        }
+        footer p {
+            margin: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 10px;
+        }
+        /* Chatbot Styles */
+        .chatbot-button {
+            position: fixed;
+            bottom: 150px;
+            right: 20px;
+            background: #0dcddb;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .chatbot-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .chatbot-window {
+            width: 400px;
+            height: 500px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .chatbot-header {
+            background: #ff9a9e;
+            color: #fff;
+            padding: 10px;
+            font-size: 1rem;
+            text-align: center;
+            position: relative;
+        }
+        .chatbot-header span {
+            font-weight: bold;
+        }
+        .chatbot-close {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .chatbot-frame {
+            width: 100%;
+            height: calc(100% - 40px);
+            border: none;
+        }
+        .chatbot-greeting {
+            position: absolute;
+            bottom: 200px;
+            right: 20px;
+            background: #0ddb7b;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <!-- Enlarge the logo to 280px and add rounded corners -->
+        <img src="Images\Long LOGO.png" alt="School Logo">
+        <!-- Add a quote or tagline below the logo -->
+        <p>Fostering Excellence in Education</p>
+    </div>
+</header>
+
+<!-- Scrolling images section -->
+<section class="scrolling-images-wrapper">
+    <div class="scrolling-images">
+        <img src="Images/awards/awards (14).JPG" alt="Image 1">
+        <img src="Images/DSC_7037.JPG" alt="Image 2">
+        <img src="Images/DSC_7214.JPG" alt="Image 3">
+        <img src="Images/DSC_8000.JPG" alt="Image 4">
+        <img src="Images/DSC_7121.JPG" alt="Image 5">
+        <img src="Images/DSC_7418.JPG" alt="Image 6">
+        <img src="Images/DSC_7526.JPG" alt="Image 7">
+        <img src="Images/DSC_7642.JPG" alt="Image 8">
+        <img src="Images/DSC_7858.JPG" alt="Image 9">
+        <img src="Images/DSC_8039.JPG" alt="Image 10">
+    </div>
+    <!-- Arrows for manual scrolling -->
+    <div class="arrow-left" onclick="moveImages('left')">&#9664;</div>
+    <div class="arrow-right" onclick="moveImages('right')">&#9654;</div>
+</section>
+
+<main>
+    <div class="feature-card">
+        <a href="about.html">
+            <h2>About Us</h2>
+            <p>Learn more about our school’s mission and values.</p>
+        </a>
+    </div>
+    <div class="feature-card">
+        <a href="facilities.html">
+            <h2>Facilities</h2>
+            <p>Discover our state-of-the-art facilities.</p>
+        </a>
+    </div>
+    <div class="feature-card">
+        <a href="gallery.html">
+            <h2>Gallery</h2>
+            <p>Explore moments captured at our school.</p>
+        </a>
+    </div>
+    <div class="feature-card">
+        <a href="contact.html">
+            <h2>Contact Us</h2>
+            <p>Get in touch for more information.</p>
+        </a>
+    </div>
+</main>
+
+<footer id="footer">
+    <p>@2025 | All Rights Reserved | Oakland Public School</p>
+</footer>
+
+<script>
+    // Script for moving images left or right manually
+    const scrollContainer = document.querySelector('.scrolling-images');
+    const images = Array.from(scrollContainer.children);
+    const imageWidth = images[0].offsetWidth + 20; // Adding gap size
+
+    let autoScrollInterval;
+    
+    function startAutoScroll() {
+        clearInterval(autoScrollInterval);
+        autoScrollInterval = setInterval(() => {
+            scrollContainer.scrollBy({
+                left: imageWidth,
+                behavior: 'smooth'
+            });
+        }, 40000); // Restart scrolling every 40 seconds (adjust as needed)
+    }
+
+    function moveImages(direction) {
+        if (direction === 'left') {
+            scrollContainer.scrollBy({
+                left: -imageWidth,
+                behavior: 'smooth'
+            });
+        } else if (direction === 'right') {
+            scrollContainer.scrollBy({
+                left: imageWidth,
+                behavior: 'smooth'
+            });
+        }
+
+        // Pause auto-scrolling for a second and restart it
+        clearInterval(autoScrollInterval);
+        setTimeout(startAutoScroll, 1000);
+    }
+
+    // Start the automatic scrolling when the page loads
+    startAutoScroll();
+</script>
+<div class="chatbot-bubble" onclick="toggleChatbot()">
+    <img src="chat-icon.png" alt="Chatbot">
+</div>
+
+<!-- Chatbot -->
+<div class="chatbot-greeting" id="chatbotGreeting">
+    Hello Oak Bot here. How may I assist you?
+</div>
+<div class="chatbot-overlay" id="chatbotOverlay">
+    <div class="chatbot-window">
+        <div class="chatbot-header">
+            <span>Chat with Oak Bot</span>
+            <span class="chatbot-close" onclick="toggleChatbot()">&times;</span>
+        </div>
+        <iframe src="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2024/12/08/11/20241208115601-KO65M00V.json" class="chatbot-frame"></iframe>
+    </div>
+</div>
+<button class="chatbot-button" onclick="toggleChatbot()">💬</button>
+
+<script>
+    // Toggle Chatbot
+    function toggleChatbot() {
+        const overlay = document.getElementById('chatbotOverlay');
+        overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Hide greeting after a delay
+    setTimeout(() => {
+    const greeting = document.getElementById('chatbotGreeting');
+    if (greeting) {
+        // Add blinking effect
+        greeting.classList.add('blinking');
+        
+        // Remove the element after a delay
+        setTimeout(() => {
+            greeting.style.display = 'none';
+        }, 99999999999999999999); // Adjust this to control how long the blinking lasts
+    }
+}, 1000); // Initial delay before starting the blinking effect
+
+
+</script>
+
+</body>
+</html>
