@@ -105,6 +105,41 @@
         .map-section a:hover {
             text-decoration: underline;
         }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .contact-form button {
+            padding: 15px;
+            background-color: #68a0b0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #4CAF50;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            box-shadow: 0 0 5px #4CAF50;
+        }
+        
     </style>
 </head>
 <body>
@@ -126,6 +161,36 @@
         <p>Email: <a href="mailto:oaklandalipurduar@gmail.com">oaklandalipurduar@gmail.com</a></p>
         <p>Follow us on Facebook:- <a href="https://www.facebook.com/p/Oakland-Public-School-100078673814996/" target="_blank">FACEBOOK LINK</a></p>
     </div>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("60JOJPJNOLWf4Td03"); // Replace with your user ID from EmailJS
+        })();
+        
+        function sendEmail(event) {
+            event.preventDefault(); // Prevent form from reloading the page
+
+            // Collecting form data
+            emailjs.sendForm('service_gob55hh', 'template_g5r5pke', '#contact-form')
+            .then(function(response) {
+                alert("Message sent successfully!");
+            }, function(error) {
+                alert("Failed to send message. Please try again later.");
+            });
+        }
+    </script>
+
+<section id="contact" class="contact">
+    <form id="contact-form" class="contact-form" onsubmit="sendEmail(event)">
+        <input type="text" placeholder="Your Name" name="from_name" required>
+        <input type="email" placeholder="Your Email" name="email" required>
+        <textarea rows="4" placeholder="Your Message" name="message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
 
     <div class="map-section">
         <h2>Our Location</h2>
